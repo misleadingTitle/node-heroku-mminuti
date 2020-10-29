@@ -27,6 +27,6 @@ jobs:
         run: |
             curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
             docker login -u _ -p ${{ secrets.HEROKU_API_KEY }} registry.heroku.com
-            docker build -f Dockerfile.dev -t registry.heroku.com/simon-e-charts-server/web .
-            heroku container:push web -a simon-e-charts-server
-            heroku container:release web -a simon-e-charts-server
+            docker build -t registry.heroku.com/${{ secrets.APP_NAME }}/web .
+            heroku container:push web -a ${{ secrets.APP_NAME }}
+            heroku container:release web -a ${{ secrets.APP_NAME }}
